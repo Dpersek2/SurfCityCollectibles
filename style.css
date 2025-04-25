@@ -1,0 +1,58 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #e0f7fa;
+    color: #333;
+}
+
+/* Nav Bar */
+nav {
+    background-color: #0077b6;
+    padding: 1rem;
+}
+.navbar {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+.navbar li {
+    margin: 0 1rem;
+}
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.navbar a:hover {
+    color: #ffd166;
+}
+
+/* Hero Banner */
+.hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    background: url('images/sfcLogo.png') center/cover no-repeat;
+    color: white;
+    background-color: #00b4d8; /* fallback color */
+}
+
+/* Featured Section */
+.featured {
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: #0077b6;
+    color: white;
+    margin-top: 2rem;
+}
