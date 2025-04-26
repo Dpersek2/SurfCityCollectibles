@@ -32,7 +32,7 @@ if (isset($_POST['add_to_cart'])) {
         $_SESSION['cart'][] = $cart_item;
     }
 
-    header("Location: shop.php"); // Redirect to avoid form resubmission
+    header("Location: shop.php");
     exit();
 }
 
@@ -73,16 +73,24 @@ if (!empty($category_filter)) {
     <?php if ($result && $result->num_rows > 0): ?>
       <?php while($row = $result->fetch_assoc()): ?>
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-          <img src="images/<?php echo htmlspecialchars($row['image']); ?>" alt="<?php echo htmlspecialchars($row['name']); ?>" class="w-full h-48 object-cover">
+
+          <!-- Link the image to product page -->
+          <a href="product.php?id=<?php echo $row['id']; ?>">
+            <img src="images/<?php echo htmlspecialchars($row['image']); ?>" alt="<?php echo htmlspecialchars($row['name']); ?>" class="w-full h-48 object-cover">
+          </a>
+
           <div class="p-4">
-            <h3 class="text-xl font-bold mb-2"><?php echo htmlspecialchars($row['name']); ?></h3>
+            <!-- Link the product name too -->
+            <a href="product.php?id=<?php echo $row['id']; ?>">
+              <h3 class="text-xl font-bold mb-2"><?php echo htmlspecialchars($row['name']); ?></h3>
+            </a>
+
             <p class="text-gray-700 mb-2">$<?php echo number_format($row['price'], 2); ?></p>
+            <p class="text-gray-600 mb-2">Available: <?php echo (int)$row['stock']; ?></p>
             <p class="text-gray-500 text-sm"><?php echo htmlspecialchars($row['category']); ?></p>
             <p class="text-gray-600 mt-2"><?php echo htmlspecialchars($row['description']); ?></p>
-            <p class="text-gray-600">Available: <?php echo (int)$row['stock']; ?></p>
 
-
-            <!-- ADD TO CART FORM -->
+            <!-- Add to Cart Form -->
             <form method="post" action="shop.php">
               <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
               <input type="hidden" name="product_name" value="<?php echo htmlspecialchars($row['name']); ?>">
