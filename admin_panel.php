@@ -2,6 +2,10 @@
 session_start();
 require_once 'config.php';
 
+// Turn on error reporting while testing
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Handle adding product
 if (isset($_POST['add_product'])) {
     $name = $_POST['name'];
@@ -12,10 +16,13 @@ if (isset($_POST['add_product'])) {
 
     $image = $_FILES['image']['name'];
     $image_tmp = $_FILES['image']['tmp_name'];
+
+    // Move the uploaded file to /images/ folder
     move_uploaded_file($image_tmp, "images/" . $image);
 
+    // Insert into database
     $stmt = $conn->prepare("INSERT INTO products (name, category, price, stock, description, image) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssdis", $name, $category, $price, $stock, $description, $image);
+    $stmt->bind_param("sssdss", $name, $category, $price, $stock, $description, $image);
     $stmt->execute();
 
     echo "<p class='text-green-600 font-bold p-4 text-center'>Product added successfully!</p>";
@@ -42,7 +49,7 @@ if (isset($_POST['add_product'])) {
 
     <input type="text" name="name" placeholder="Product Name" required class="border p-3 w-full rounded">
     <input type="text" name="category" placeholder="Category (e.g., Pokémon, One Piece, LEGO)" required class="border p-3 w-full rounded">
-    <input type="number" name="price" placeholder="Price" step="0.01" required class="border p-3 w-full rounded">
+    <input type="number" step="0.01" name="price" placeholder="Price" required class="border p-3 w-full rounded">
     <input type="number" name="stock" placeholder="Stock Quantity" required class="border p-3 w-full rounded">
     <textarea name="description" placeholder="Product Description" required class="border p-3 w-full rounded"></textarea>
     <input type="file" name="image" accept="image/*" required class="border p-3 w-full rounded">
@@ -56,7 +63,6 @@ if (isset($_POST['add_product'])) {
 </main>
 
 <?php include 'footer.php'; ?>
-
 
 </body>
 </html>
