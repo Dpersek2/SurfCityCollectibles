@@ -3,31 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <title>SurfCity Collectibles - Home</title>
-  <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind ready -->
-  <link rel="stylesheet" href="style.css"> <!-- Your custom styles -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-[#FAF3E0] text-[#333333]">
 
-<?php include 'navbar.php'; ?> <!-- ✅ Include the modular navbar -->
+<?php include 'navbar.php'; ?>
 
-<main class="p-8">
+<main class="p-8 md:p-16 max-w-4xl mx-auto text-center">
 
-  <!-- 🖼️ Banner Image -->
+  <!-- LOGO at top -->
   <div class="flex justify-center mb-8">
-    <img src="images/surfingRaichus.png" alt="SurfCity Collectibles Banner" class="w-full max-w-4xl rounded shadow-lg">
+    <img src="images/sfcLogo.png" alt="SurfCity Collectibles Logo" class="w-64 h-auto rounded shadow-lg">
   </div>
 
-  <h1 class="text-4xl font-bold text-center mb-8">Welcome to SurfCity Collectibles!</h1>
+  <h1 class="text-4xl md:text-5xl font-bold mb-6">Welcome to SurfCity Collectibles!</h1>
 
-  <div class="text-center text-lg">
-    <p class="mb-4">Your trusted source for Pokémon Cards, One Piece Cards, and LEGO sets!</p>
-    <p class="mb-4">Browse by category under the "Shop" menu, add items to your cart, and get ready to expand your collection.</p>
-    <p>New products arriving weekly — stay tuned!</p>
-  </div>
+  <p class="text-lg md:text-xl mb-8">
+    Ride the wave of awesome collectibles — Pokémon, One Piece, LEGO and more!
+  </p>
+
+  <a href="shop.php" class="inline-block bg-[#F4A261] hover:bg-[#e88d3b] text-white font-bold py-3 px-8 rounded-full text-lg shadow-md">
+    Start Shopping
+  </a>
+
 </main>
 
-<footer class="text-center bg-blue-600 text-white p-4 mt-8">
-  &copy; 2025 SurfCity Collectibles. All rights reserved.
+<footer class="bg-[#247A73] text-white text-center p-4 mt-16">
+  &copy; 2025 SurfCity Collectibles. All rights reserved. 
+  <br>
+  <a href="index.php" class="underline hover:text-gray-200">Home</a> |
+  <a href="shop.php" class="underline hover:text-gray-200">Shop</a> |
+  <a href="cart.php" class="underline hover:text-gray-200">Cart</a>
 </footer>
 
 </body>
