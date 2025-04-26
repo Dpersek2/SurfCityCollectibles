@@ -2,18 +2,16 @@
 session_start();
 require_once 'config.php';
 
-// Handle Registration Form Submission
+// Handle Registration
 if (isset($_POST['register'])) {
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
-    // Check if passwords match
     if ($password !== $confirm_password) {
         $error = "Passwords do not match.";
     } else {
-        // Check if username or email already exists
         $stmt = $conn->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
         $stmt->bind_param("ss", $username, $email);
         $stmt->execute();
@@ -22,15 +20,12 @@ if (isset($_POST['register'])) {
         if ($stmt->num_rows > 0) {
             $error = "Username or email already taken.";
         } else {
-            // Password Hashing
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-            // Insert new user
             $insert_stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
             $insert_stmt->bind_param("sss", $username, $email, $hashed_password);
             $insert_stmt->execute();
 
-            $_SESSION['user'] = $username; // Log the user in after registering
+            $_SESSION['user'] = $username;
             header('Location: index.php');
             exit();
         }
@@ -46,37 +41,43 @@ if (isset($_POST['register'])) {
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-[#FAF3E0] text-[#333333]">
 
 <?php include 'navbar.php'; ?>
 
-<main class="p-8 max-w-md mx-auto">
-  <h1 class="text-3xl font-bold text-center mb-8">Create an Account</h1>
+<main class="p-8 md:p-16 max-w-md mx-auto text-center">
+
+  <h1 class="text-4xl font-bold mb-8">Create an Account</h1>
 
   <?php if (isset($error)): ?>
     <div class="bg-red-100 text-red-700 p-4 rounded mb-6"><?php echo $error; ?></div>
   <?php endif; ?>
 
-  <form method="post" action="register.php" class="space-y-4">
+  <form method="post" action="register.php" class="space-y-6">
 
-    <input type="text" name="username" placeholder="Username" required class="border p-2 w-full rounded">
-    <input type="email" name="email" placeholder="Email Address" required class="border p-2 w-full rounded">
-    <input type="password" name="password" placeholder="Password" required class="border p-2 w-full rounded">
-    <input type="password" name="confirm_password" placeholder="Confirm Password" required class="border p-2 w-full rounded">
+    <input type="text" name="username" placeholder="Username" required class="border p-3 w-full rounded">
+    <input type="email" name="email" placeholder="Email Address" required class="border p-3 w-full rounded">
+    <input type="password" name="password" placeholder="Password" required class="border p-3 w-full rounded">
+    <input type="password" name="confirm_password" placeholder="Confirm Password" required class="border p-3 w-full rounded">
 
-    <button type="submit" name="register" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded w-full">
+    <button type="submit" name="register" class="bg-[#F4A261] hover:bg-[#e88d3b] text-white font-bold px-6 py-3 rounded-full w-full shadow-md">
       Register
     </button>
+
   </form>
 
-  <div class="text-center mt-4">
-    <p>Already have an account? <a href="login.php" class="text-blue-600 hover:underline">Login here</a>.</p>
+  <div class="text-center mt-6">
+    <p>Already have an account? <a href="login.php" class="text-[#2A9D8F] font-bold hover:underline">Login here</a>.</p>
   </div>
 
 </main>
 
-<footer class="text-center bg-blue-600 text-white p-4 mt-8">
+<footer class="bg-[#247A73] text-white text-center p-4 mt-16">
   &copy; 2025 SurfCity Collectibles. All rights reserved.
+  <br>
+  <a href="index.php" class="underline hover:text-gray-200">Home</a> |
+  <a href="shop.php" class="underline hover:text-gray-200">Shop</a> |
+  <a href="cart.php" class="underline hover:text-gray-200">Cart</a>
 </footer>
 
 </body>

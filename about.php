@@ -3,25 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>About Us - SurfCity Collectibles</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-[#FAF3E0] text-[#333333]">
 
 <?php include 'navbar.php'; ?>
 
-  
-  
-  <main>
-    <section style="padding: 2rem; text-align: center;">
-      <h1>About SurfCity Collectibles</h1>
-      <p>We're two brothers with a passion for Pokémon, One Piece, LEGO, and all things collectible.</p>
-      <p>From the beach to the battlefields of TCGs, we bring you the best drops, rares, and builds — all with a surf-inspired vibe.</p>
-    </section>
-  </main>
+<main class="p-8 md:p-16 max-w-3xl mx-auto text-center">
 
-  <footer>
-    <p>&copy; 2025 SurfCity Collectibles. All rights reserved.</p>
-  </footer>
+  <h1 class="text-4xl font-bold mb-8">About SurfCity Collectibles</h1>
+
+  <p class="text-lg leading-relaxed">
+    SurfCity Collectibles was founded by passionate collectors, for passionate collectors.
+    <br><br>
+    Whether you're hunting for rare Pokémon cards, building epic LEGO sets, or sailing through the Grand Line with One Piece collectibles — we're here to fuel your adventure.
+    <br><br>
+    Surf’s up, and so are the best collectibles around. 🌴🌊
+  </p>
+
+</main>
+
+<footer class="bg-[#247A73] text-white text-center p-4 mt-16">
+  &copy; 2025 SurfCity Collectibles. All rights reserved.
+  <br>
+  <a href="index.php" class="underline hover:text-gray-200">Home</a> |
+  <a href="shop.php" class="underline hover:text-gray-200">Shop</a> |
+  <a href="cart.php" class="underline hover:text-gray-200">Cart</a>
+</footer>
 
 </body>
 </html>
