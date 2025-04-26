@@ -2,6 +2,7 @@
 session_start();
 require_once 'config.php';
 
+
 // Handle Add to Cart action
 if (isset($_POST['add_to_cart'])) {
     $product_id = $_POST['product_id'];
@@ -35,6 +36,32 @@ if (isset($_POST['add_to_cart'])) {
     header("Location: shop.php"); // Redirect to avoid form resubmission
     exit();
 }
+
+// Handle category filtering
+$category_filter = '';
+if (isset($_GET['category'])) {
+    $category_filter = $_GET['category'];
+}
+
+// Fetch products
+if (!empty($category_filter)) {
+    // Fetch only products that match the selected category
+    $stmt = $conn->prepare("SELECT * FROM products WHERE category = ?");
+    $stmt->bind_param("s", $category_filter);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    // Fetch all products (default shop)
+    $result = $conn->query("SELECT * FROM products");
+}
+?>
+
+
+
+
+
+
+
 
 // Fetch all products from database
 $sql = "SELECT * FROM products";
