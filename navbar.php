@@ -21,11 +21,19 @@
         Cart (<?php echo isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'], 'quantity')) : 0; ?>)
       </a></li>
 
+      <!-- Dynamic Login/Logout -->
+      <?php if (isset($_SESSION['user'])): ?>
+        <li><a href="logout.php" style="color: white; text-decoration: none;">Logout (<?php echo htmlspecialchars($_SESSION['user']); ?>)</a></li>
+      <?php else: ?>
+        <li><a href="login.php" style="color: white; text-decoration: none;">Login</a></li>
+        <li><a href="register.php" style="color: white; text-decoration: none;">Register</a></li>
+      <?php endif; ?>
+
     </ul>
   </nav>
 </header>
 
-<!-- JavaScript to show dropdown -->
+<!-- Dropdown Script -->
 <script>
   const shopMenu = document.getElementById('shop-menu');
   const dropdown = document.getElementById('dropdown');
