@@ -16,7 +16,7 @@
 
   <!-- Austin Section -->
   <div class="flex flex-col md:flex-row items-center gap-12">
-    <img src="images/bros1.png" alt="Austin Persek" class="w-full md:w-1/2 rounded-lg shadow-md">
+  <img src="images/bros1.png" alt="Austin Persek" class="w-full md:w-[400px] md:h-[400px] object-cover rounded-lg shadow-md">
 
     <div class="flex-1 text-center md:text-left">
       <h2 class="text-3xl font-bold mb-4">Austin Persek</h2>
