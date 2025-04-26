@@ -2,7 +2,6 @@
 session_start();
 require_once 'config.php';
 
-
 // Handle Add to Cart action
 if (isset($_POST['add_to_cart'])) {
     $product_id = $_POST['product_id'];
@@ -45,27 +44,13 @@ if (isset($_GET['category'])) {
 
 // Fetch products
 if (!empty($category_filter)) {
-    // Fetch only products that match the selected category
     $stmt = $conn->prepare("SELECT * FROM products WHERE category = ?");
     $stmt->bind_param("s", $category_filter);
     $stmt->execute();
     $result = $stmt->get_result();
 } else {
-    // Fetch all products (default shop)
     $result = $conn->query("SELECT * FROM products");
 }
-?>
-
-
-
-
-
-
-
-
-// Fetch all products from database
-$sql = "SELECT * FROM products";
-$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -73,25 +58,19 @@ $result = $conn->query($sql);
 <head>
   <meta charset="UTF-8">
   <title>Shop - SurfCity Collectibles</title>
-  <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind Ready for Later -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <?php include 'navbar.php'; ?>
 
-
-
-
-
-
-
 <main class="p-8">
   <h1 class="text-3xl text-center font-bold mb-8">Shop Collectibles</h1>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-    <?php if ($result->num_rows > 0): ?>
+    <?php if ($result && $result->num_rows > 0): ?>
       <?php while($row = $result->fetch_assoc()): ?>
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
           <img src="images/<?php echo htmlspecialchars($row['image']); ?>" alt="<?php echo htmlspecialchars($row['name']); ?>" class="w-full h-48 object-cover">
