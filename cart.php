@@ -34,16 +34,35 @@ if (!empty($_SESSION['cart'])) {
 <body>
 
 <header>
-  <nav style="background-color: #2563eb; padding: 1rem;">
-    <ul style="display: flex; justify-content: center; gap: 2rem; color: white; font-weight: bold; list-style: none; margin: 0; padding: 0;">
+  <nav style="background-color: #2563eb; padding: 1rem; position: relative;">
+    <ul style="display: flex; justify-content: center; gap: 2rem; color: white; font-weight: bold; list-style: none; margin: 0; padding: 0; position: relative;">
+
       <li><a href="index.html" style="color: white; text-decoration: none;">Home</a></li>
-      <li><a href="shop.php" style="color: white; text-decoration: none;">Shop</a></li>
+
+      <li style="position: relative;">
+        <a href="shop.php" style="color: white; text-decoration: none;">Shop ▼</a>
+        <ul class="dropdown" style="display: none; position: absolute; top: 100%; left: 0; background-color: #2563eb; list-style: none; padding: 0; margin: 0;">
+          <li><a href="shop.php?category=Pokemon" style="color: white; text-decoration: none; display: block; padding: 0.5rem 1rem;">Pokémon</a></li>
+          <li><a href="shop.php?category=One%20Piece" style="color: white; text-decoration: none; display: block; padding: 0.5rem 1rem;">One Piece</a></li>
+          <li><a href="shop.php?category=LEGO" style="color: white; text-decoration: none; display: block; padding: 0.5rem 1rem;">LEGO</a></li>
+        </ul>
+      </li>
+
       <li><a href="about.html" style="color: white; text-decoration: none;">About</a></li>
       <li><a href="contact.html" style="color: white; text-decoration: none;">Contact</a></li>
-      <li><a href="cart.php" style="color: white; text-decoration: none;">Cart 🛒</a></li>
+      <li><a href="cart.php" style="color: white; text-decoration: none;">Cart</a></li>
+
     </ul>
   </nav>
 </header>
+
+<style>
+/* Proper CSS for showing the dropdown on hover */
+nav li:hover > ul.dropdown {
+    display: block;
+}
+</style>
+
 
 
 
