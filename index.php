@@ -4,13 +4,19 @@
   <meta charset="UTF-8">
   <title>SurfCity Collectibles - Home</title>
   <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind ready -->
-  <link rel="stylesheet" href="style.css"> <!-- If you have a custom style.css -->
+  <link rel="stylesheet" href="style.css"> <!-- Your custom styles -->
 </head>
 <body>
 
-<?php include 'navbar.php'; ?> <!-- ✅ Include the shared navbar -->
+<?php include 'navbar.php'; ?> <!-- ✅ Include the modular navbar -->
 
 <main class="p-8">
+
+  <!-- 🖼️ Banner Image -->
+  <div class="flex justify-center mb-8">
+    <img src="images/banner.png" alt="SurfCity Collectibles Banner" class="w-full max-w-4xl rounded shadow-lg">
+  </div>
+
   <h1 class="text-4xl font-bold text-center mb-8">Welcome to SurfCity Collectibles!</h1>
 
   <div class="text-center text-lg">
@@ -26,4 +32,3 @@
 
 </body>
 </html>
-
