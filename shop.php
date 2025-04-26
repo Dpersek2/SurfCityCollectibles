@@ -1,5 +1,40 @@
 <?php
+session_start();
 require_once 'config.php';
+
+// Handle Add to Cart action
+if (isset($_POST['add_to_cart'])) {
+    $product_id = $_POST['product_id'];
+    $product_name = $_POST['product_name'];
+    $product_price = $_POST['product_price'];
+
+    $cart_item = [
+        'id' => $product_id,
+        'name' => $product_name,
+        'price' => $product_price,
+        'quantity' => 1
+    ];
+
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
+
+    // Check if product already exists in cart
+    $found = false;
+    foreach ($_SESSION['cart'] as &$item) {
+        if ($item['id'] == $product_id) {
+            $item['quantity'] += 1;
+            $found = true;
+            break;
+        }
+    }
+    if (!$found) {
+        $_SESSION['cart'][] = $cart_item;
+    }
+
+    header("Location: shop.php"); // Redirect to avoid form resubmission
+    exit();
+}
 
 // Fetch all products from database
 $sql = "SELECT * FROM products";
@@ -12,17 +47,17 @@ $result = $conn->query($sql);
   <meta charset="UTF-8">
   <title>Shop - SurfCity Collectibles</title>
   <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind Ready for Later -->
-  <link rel="stylesheet" href="style.css"> <!-- Your custom CSS too -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav class="bg-blue-600 p-4">
   <ul class="flex justify-center space-x-8 text-white font-bold">
-    <li><a href="index.php">Home</a></li>
+    <li><a href="index.html">Home</a></li>
     <li><a href="shop.php">Shop</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
-    <li><a href="cart.html">Cart 🛒</a></li>
+    <li><a href="cart.php">Cart 🛒</a></li> <!-- Important! cart.php not cart.html -->
   </ul>
 </nav>
 
@@ -40,7 +75,17 @@ $result = $conn->query($sql);
             <p class="text-gray-700 mb-2">$<?php echo number_format($row['price'], 2); ?></p>
             <p class="text-gray-500 text-sm"><?php echo htmlspecialchars($row['category']); ?></p>
             <p class="text-gray-600 mt-2"><?php echo htmlspecialchars($row['description']); ?></p>
-            <button class="bg-blue-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700 w-full">Add to Cart</button>
+
+            <!-- ADD TO CART FORM -->
+            <form method="post" action="shop.php">
+              <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
+              <input type="hidden" name="product_name" value="<?php echo htmlspecialchars($row['name']); ?>">
+              <input type="hidden" name="product_price" value="<?php echo $row['price']; ?>">
+              <button type="submit" name="add_to_cart" class="bg-blue-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700 w-full">
+                Add to Cart
+              </button>
+            </form>
+
           </div>
         </div>
       <?php endwhile; ?>
