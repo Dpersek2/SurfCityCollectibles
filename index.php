@@ -14,7 +14,7 @@
 
   <!-- 🖼️ Banner Image -->
   <div class="flex justify-center mb-8">
-    <img src="images/banner.png" alt="SurfCity Collectibles Banner" class="w-full max-w-4xl rounded shadow-lg">
+    <img src="images/surfingRaichus.png" alt="SurfCity Collectibles Banner" class="w-full max-w-4xl rounded shadow-lg">
   </div>
 
   <h1 class="text-4xl font-bold text-center mb-8">Welcome to SurfCity Collectibles!</h1>
