@@ -90,15 +90,21 @@ if (!empty($category_filter)) {
             <p class="text-gray-500 text-sm"><?php echo htmlspecialchars($row['category']); ?></p>
             <p class="text-gray-600 mt-2"><?php echo htmlspecialchars($row['description']); ?></p>
 
-            <!-- Add to Cart Form -->
-            <form method="post" action="shop.php">
-              <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
-              <input type="hidden" name="product_name" value="<?php echo htmlspecialchars($row['name']); ?>">
-              <input type="hidden" name="product_price" value="<?php echo $row['price']; ?>">
-              <button type="submit" name="add_to_cart" class="bg-blue-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700 w-full">
-                Add to Cart
+            <!-- Out of Stock Logic -->
+            <?php if ((int)$row['stock'] > 0): ?>
+              <form method="post" action="shop.php">
+                <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
+                <input type="hidden" name="product_name" value="<?php echo htmlspecialchars($row['name']); ?>">
+                <input type="hidden" name="product_price" value="<?php echo $row['price']; ?>">
+                <button type="submit" name="add_to_cart" class="bg-blue-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700 w-full">
+                  Add to Cart
+                </button>
+              </form>
+            <?php else: ?>
+              <button class="bg-gray-400 text-white mt-4 px-4 py-2 rounded w-full cursor-not-allowed" disabled>
+                Out of Stock
               </button>
-            </form>
+            <?php endif; ?>
 
           </div>
         </div>
