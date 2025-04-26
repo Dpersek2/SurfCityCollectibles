@@ -51,15 +51,18 @@ $result = $conn->query($sql);
 </head>
 <body>
 
-<nav class="bg-blue-600 p-4">
-  <ul class="flex justify-center space-x-8 text-white font-bold">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="shop.php">Shop</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="cart.php">Cart 🛒</a></li>
-  </ul>
-</nav>
+<header>
+  <nav style="background-color: #2563eb; padding: 1rem;">
+    <ul style="display: flex; justify-content: center; gap: 2rem; color: white; font-weight: bold; list-style: none; margin: 0; padding: 0;">
+      <li><a href="index.html" style="color: white; text-decoration: none;">Home</a></li>
+      <li><a href="shop.php" style="color: white; text-decoration: none;">Shop</a></li>
+      <li><a href="about.html" style="color: white; text-decoration: none;">About</a></li>
+      <li><a href="contact.html" style="color: white; text-decoration: none;">Contact</a></li>
+      <li><a href="cart.php" style="color: white; text-decoration: none;">Cart 🛒</a></li>
+    </ul>
+  </nav>
+</header>
+
 
 
 <main class="p-8">
