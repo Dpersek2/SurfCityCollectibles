@@ -37,9 +37,12 @@ if (!empty($_SESSION['cart'])) {
   <ul class="flex justify-center space-x-8 text-white font-bold">
     <li><a href="index.html">Home</a></li>
     <li><a href="shop.php">Shop</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
     <li><a href="cart.php">Cart 🛒</a></li>
   </ul>
 </nav>
+
 
 <main class="p-8">
   <h1 class="text-3xl text-center font-bold mb-8">Your Cart</h1>
@@ -78,3 +81,4 @@ if (!empty($_SESSION['cart'])) {
 
 </body>
 </html>
+ 

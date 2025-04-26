@@ -57,9 +57,10 @@ $result = $conn->query($sql);
     <li><a href="shop.php">Shop</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
-    <li><a href="cart.php">Cart 🛒</a></li> <!-- Important! cart.php not cart.html -->
+    <li><a href="cart.php">Cart 🛒</a></li>
   </ul>
 </nav>
+
 
 <main class="p-8">
   <h1 class="text-3xl text-center font-bold mb-8">Shop Collectibles</h1>
