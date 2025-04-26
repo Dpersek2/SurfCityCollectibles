@@ -38,15 +38,15 @@
 
   <!-- Dropdown Script -->
   <script>
-    const shopMenu = document.getElementById('shop-menu');
-    const dropdown = document.getElementById('dropdown');
+  const shopMenu = document.getElementById('shop-menu');
+  const dropdown = document.getElementById('dropdown');
 
-    shopMenu.addEventListener('mouseenter', () => {
-      dropdown.style.display = 'block';
-    });
+  shopMenu.addEventListener('mouseenter', () => {
+    dropdown.style.display = 'block';
+  });
 
-    shopMenu.addEventListener('mouseleave', () => {
-      dropdown.style.display = 'none';
-    });
-  </script>
+  shopMenu.addEventListener('mouseleave', () => {
+    dropdown.style.display = 'none';
+  });
+</script>
 </header>
