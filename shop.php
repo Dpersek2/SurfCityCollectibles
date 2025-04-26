@@ -79,6 +79,8 @@ if (!empty($category_filter)) {
             <p class="text-gray-700 mb-2">$<?php echo number_format($row['price'], 2); ?></p>
             <p class="text-gray-500 text-sm"><?php echo htmlspecialchars($row['category']); ?></p>
             <p class="text-gray-600 mt-2"><?php echo htmlspecialchars($row['description']); ?></p>
+            <p class="text-gray-600">Available: <?php echo (int)$row['stock']; ?></p>
+
 
             <!-- ADD TO CART FORM -->
             <form method="post" action="shop.php">
